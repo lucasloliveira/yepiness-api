@@ -7,10 +7,13 @@ gem 'rails-api'
 
 gem 'spring', :group => :development
 
+gem 'pg'
 
-gem 'sqlite3'
+gem 'devise_token_auth', git: 'https://github.com/jasonswett/devise_token_auth.git'
 
+gem 'omniauth'
 
+gem 'rack-cors', :require => 'rack/cors'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

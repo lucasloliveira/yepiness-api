@@ -15,5 +15,5 @@
 # error is raised.
 # Using secret_token for rails3 compatibility. Change to secret_key_base
 # to avoid deprecation warning.
-# Can be safely removed in a rails3 api-only application.
+# Can be safely removed in a rails3 api-only application. test
 YepinessApi::Application.config.secret_token = 'c11b88dff163963278bc9eb5674460d9cf214b3940fb653165cd76e87c2ae2e101202b8e77fc7786dbfb9c1b758adcf770f1fda269d8c34a69e9b258cfe86209'
