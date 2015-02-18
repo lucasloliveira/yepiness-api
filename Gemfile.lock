@@ -46,13 +46,13 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
-    devise_token_auth (0.1.32.beta5)
+    devise_token_auth (0.1.32.beta2)
       devise (~> 3.3)
       rails (~> 4.2)
     erubis (2.7.0)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
-    globalid (0.3.2)
+    globalid (0.3.3)
       activesupport (>= 4.1.0)
     hashie (3.4.0)
     hike (1.2.3)
@@ -145,12 +145,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  devise_token_auth (~> 0.1.32.beta5)
-  omniauth
+  devise_token_auth (= 0.1.32.beta2)
   omniauth-facebook
   pg
   rack-cors
   rails (= 4.2.0)
   rails-api
-  responders
   spring
