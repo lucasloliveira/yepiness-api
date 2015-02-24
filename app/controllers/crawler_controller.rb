@@ -1,11 +1,20 @@
 class CrawlerController < ApplicationController
 
-  def crawl
-    page = Nokogiri::HTML(open("http://www.terra.com.br/"))
-    title = page.css('title').text
-    description = page.css('meta')[0]
-    description2 = page.css('descriptionadsa2').text
+  require 'open-uri'
 
-    render plain: title +  "\n" + description +  "\n" + description2
+  def crawl
+    page = Nokogiri::HTML(open(params[:url]))
+
+    title = page.css("meta[property='og:title']")
+    description = page.css("meta[property='og:description']")
+    image = page.css("meta[property='og:image']")
+
+    crawlResults = {
+        title: title[0]['content'],
+        description: description[0]['content'],
+        image: image[0]['content']
+    }
+
+    render json: crawlResults
   end
 end

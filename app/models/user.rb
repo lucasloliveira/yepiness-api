@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :friends,
                           :class_name => 'User',
-                          :join_table => 'user_friends',
+                          :join_table => 'users_friends',
                           :foreign_key => 'user_id',
                           :association_foreign_key => 'friend_id'
 # This is a sql query to insert and remove friends
