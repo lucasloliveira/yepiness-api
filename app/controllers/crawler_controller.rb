@@ -1,20 +1,11 @@
 class CrawlerController < ApplicationController
 
-  require 'open-uri'
+  require 'scrapifier'
 
   def crawl
-    page = Nokogiri::HTML(open(params[:url]))
+    yepContent = params[:url]
+    scrapResult = yepContent.scrapify(which: 0)
 
-    title = page.css("meta[property='og:title']")
-    description = page.css("meta[property='og:description']")
-    image = page.css("meta[property='og:image']")
-
-    crawlResults = {
-        title: title[0]['content'],
-        description: description[0]['content'],
-        image: image[0]['content']
-    }
-
-    render json: crawlResults
+    render json: scrapResult
   end
 end
