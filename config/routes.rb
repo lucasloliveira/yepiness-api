@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       scope '/v1' do
         scope '/user' do
           get '/friends/count' => 'user#friendCount'
+          post '/yep' => 'user#createYep'
         end
 
         scope '/crawl' do

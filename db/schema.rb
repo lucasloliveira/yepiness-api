@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150123232219) do
+ActiveRecord::Schema.define(version: 20150226121330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email"
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20150123232219) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["uid"], name: "index_users_on_uid", unique: true, using: :btree
 
-  create_table "users_friends", id: false, force: true do |t|
+  create_table "users_friends", id: false, force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "friend_id"
     t.datetime "friends_since"
@@ -54,24 +54,24 @@ ActiveRecord::Schema.define(version: 20150123232219) do
     t.boolean  "active",        default: true
   end
 
-  create_table "yeps", force: true do |t|
+  create_table "yeps", force: :cascade do |t|
     t.text     "content"
     t.string   "title"
     t.string   "description"
     t.string   "shortUrl"
     t.string   "url"
     t.integer  "user_id"
-    t.string   "imageUrl"
+    t.string   "image"
     t.datetime "date_created"
-    t.boolean  "active"
-    t.boolean  "seen"
+    t.boolean  "active",       default: true
+    t.boolean  "seen",         default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "yeps", ["user_id"], name: "index_yeps_on_user_id", using: :btree
 
-  create_table "yeps_users", force: true do |t|
+  create_table "yeps_users", force: :cascade do |t|
     t.integer "users_id"
     t.integer "yeps_id"
   end
