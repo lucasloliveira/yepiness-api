@@ -14,6 +14,18 @@ class YepController < ApplicationController
     render json: yep
   end
 
+
+  def sent
+    yeps = Yep.where(user_id: current_user.id)
+
+    render json: yeps
+  end
+
+  def received
+    render json: current_user.yeps
+  end
+
+  private
   def yep_params
     params.require(:newYep).permit(:title, :content, :description, :url, :image)
   end

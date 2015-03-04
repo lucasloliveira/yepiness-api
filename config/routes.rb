@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
         scope '/yep' do
           post '/' => 'yep#create'
+          get '/sent' => 'yep#sent'
+          get '/received' => 'yep#received'
         end
 
         scope '/crawler' do
