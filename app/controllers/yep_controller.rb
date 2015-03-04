@@ -3,10 +3,11 @@ class YepController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    # yep = params[:newYep]
     yep = Yep.new(yep_params)
     yep.user = current_user
-    yep.users << current_user
+
+    # TODO: Implement relation between users and yeps
+    # yep.users << current_user
 
     yep.save
 
