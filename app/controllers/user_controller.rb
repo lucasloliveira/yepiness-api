@@ -6,11 +6,4 @@ class UserController < ApplicationController
     render json: current_user.friends.count
   end
 
-  def createYep
-    yep = params[:newYep]
-    p 'NOVO YEPPP -----'
-    p yep
-
-    render plain: "ok!"
-  end
 end
