@@ -7,7 +7,7 @@ class YepController < ApplicationController
     yep.user = current_user
 
     # TODO: Implement relation between users and yeps
-    # yep.users << current_user
+    yep.users << current_user
 
     yep.save
 

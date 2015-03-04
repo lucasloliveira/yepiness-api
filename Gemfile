@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 
-gem 'rails', '4.2.0'
+gem 'rails', github: 'rails/rails', branch: '4-2-stable'
 
 gem 'rails-api'
 

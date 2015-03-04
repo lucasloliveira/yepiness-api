@@ -6,6 +6,11 @@ class User < ActiveRecord::Base
                           :join_table => 'users_friends',
                           :foreign_key => 'user_id',
                           :association_foreign_key => 'friend_id'
+
+  has_and_belongs_to_many :yeps,
+                          :join_table => 'yeps_users',
+                          :foreign_key => 'user_id'
+
 # This is a sql query to insert and remove friends
 #                           :insert_sql => 'insert into friendships (`user_id`, `friend_id`) values
 # (#{id}, #{record.id}), (#{record.id}, #{id})',
