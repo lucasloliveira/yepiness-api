@@ -7,7 +7,7 @@ class YepController < ApplicationController
     yep.user = current_user
 
     # TODO: Implement relation between users and yeps
-    yep.users << current_user
+    # yep.users << current_user
 
     yep.save
 
@@ -18,11 +18,11 @@ class YepController < ApplicationController
   def sent
     yeps = Yep.where(user_id: current_user.id)
 
-    render json: yeps
+    render json: yeps.order(created_at: :desc)
   end
 
   def received
-    render json: current_user.yeps
+    render json: current_user.yeps.order(created_at: :desc)
   end
 
   private
