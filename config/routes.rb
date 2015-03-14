@@ -8,7 +8,10 @@ Rails.application.routes.draw do
     scope 'api' do
       scope '/v1' do
         scope '/user' do
-          get '/friends/count' => 'user#friendCount'
+          get '/friends' => 'user#friends'
+          get '/:id' => 'user#byId'
+          post '/addFriend/:friendId' => 'user#addFriend'
+          get '/friends/count' => 'user#friendsCount'
         end
 
         scope '/yep' do
