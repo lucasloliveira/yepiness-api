@@ -11,11 +11,7 @@ class YepController < ApplicationController
       yep.users << User.find(friend[:id])
     end
 
-    # TODO: Implement relation between users and yeps
-    # yep.users << current_user
-
     yep.save
-
     render json: yep
   end
 
