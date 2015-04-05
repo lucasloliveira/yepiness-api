@@ -8,9 +8,10 @@ class CreateYeps < ActiveRecord::Migration
       t.string :url
       t.references :user, index: true
       t.string :imageUrl
-      t.datetime :date_created
-      t.boolean :active
-      t.boolean :seen
+      t.string :category
+      t.boolean :active, :default => true
+      t.boolean :public, :default => true
+      t.boolean :seen, :default => false
 
       t.timestamps
     end
