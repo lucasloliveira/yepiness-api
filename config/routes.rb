@@ -5,6 +5,8 @@ Rails.application.routes.draw do
         registrations:      'overrides/registrations'
     }
 
+    root :to => 'application#index'
+
     scope 'api' do
       scope '/v1' do
         scope '/user' do
