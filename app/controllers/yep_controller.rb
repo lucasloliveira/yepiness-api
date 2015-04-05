@@ -36,7 +36,7 @@ class YepController < ApplicationController
     p 'sent'
     p yeps
 
-    render json: yeps.order(created_at: :desc)
+    render json: yeps.order(created_at: :desc).to_json(:include => [:users])
   end
 
   def received
