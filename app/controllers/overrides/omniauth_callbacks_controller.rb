@@ -31,7 +31,7 @@ module Overrides
                                              provider: auth_hash['provider']
                                          }).first_or_initialize
       end
-    
+
       @resource.uid = auth_hash['uid']
       @resource.provider = auth_hash['provider']
 

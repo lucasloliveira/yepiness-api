@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 20150316230411) do
     t.string   "shortUrl"
     t.string   "url"
     t.integer  "user_id"
-    t.string   "imageUrl"
+    t.string   "image"
     t.string   "category"
     t.boolean  "active",      default: true
     t.boolean  "public",      default: true
