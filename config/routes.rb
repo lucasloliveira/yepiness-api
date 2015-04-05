@@ -1,14 +1,24 @@
 Rails.application.routes.draw do
 
-    mount_devise_token_auth_for 'User', at: 'auth'
-    # , controllers: {
-    #     token_validations:  'overrides/token_validations'
-    # }
+    mount_devise_token_auth_for 'User', at: 'auth', controllers: {
+        omniauth_callbacks: 'overrides/omniauth_callbacks',
+        registrations:      'overrides/registrations'
+    }
 
     scope 'api' do
       scope '/v1' do
         scope '/user' do
-          get '/friends/count' => 'user#friendCount'
+          scope '/friends' do
+            get   '/' => 'user#friends'
+            get   '/count' => 'user#friendsCount'
+            post  '/add/:friendId' => 'user#addFriend'
+            get   '/sent' => 'user#sentRequests'
+            get   '/received' => 'user#receivedRequests'
+            post  '/accept/:friendId' => 'user#acceptFriend'
+            post  '/decline/:friendId' => 'user#declineFriend'
+            delete  '/remove/:friendId' => 'user#removeFriend'
+          end
+          get   '/:id' => 'user#byId'
         end
 
         scope '/yep' do

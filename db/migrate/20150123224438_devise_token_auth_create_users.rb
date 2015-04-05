@@ -43,7 +43,7 @@ class DeviseTokenAuthCreateUsers < ActiveRecord::Migration
       t.text :tokens
 
       ## Customized user info
-      t.boolean :active
+      t.boolean :active, :default => true
 
       t.timestamps
     end
