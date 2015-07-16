@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150709171837) do
+ActiveRecord::Schema.define(version: 20150716132330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "title"
+    t.string   "icon"
+    t.boolean  "active",     default: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
 
   create_table "friendships", force: :cascade do |t|
     t.integer  "friendable_id"
@@ -27,11 +35,11 @@ ActiveRecord::Schema.define(version: 20150709171837) do
 
   create_table "users", force: :cascade do |t|
     t.string   "email"
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "encrypted_password",     default: "",   null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,    null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -44,9 +52,9 @@ ActiveRecord::Schema.define(version: 20150709171837) do
     t.string   "nickname"
     t.string   "image"
     t.string   "provider"
-    t.string   "uid",                    default: "", null: false
+    t.string   "uid",                    default: "",   null: false
     t.text     "tokens"
-    t.boolean  "active"
+    t.boolean  "active",                 default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -72,10 +80,11 @@ ActiveRecord::Schema.define(version: 20150709171837) do
     t.integer  "user_id"
     t.string   "image"
     t.boolean  "active",      default: true
+    t.boolean  "public",      default: true
     t.boolean  "seen",        default: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "category"
+    t.integer  "category_id"
   end
 
   add_index "yeps", ["user_id"], name: "index_yeps_on_user_id", using: :btree
