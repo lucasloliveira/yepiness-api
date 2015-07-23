@@ -32,6 +32,10 @@ Rails.application.routes.draw do
         scope '/crawler' do
           get '/' => 'crawler#crawl'
         end
+
+        scope '/category' do
+          get '/' => 'category#list'
+        end
       end
     end
 end
