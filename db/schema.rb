@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150316230411) do
+ActiveRecord::Schema.define(version: 20150716132330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "title"
+    t.string   "icon"
+    t.boolean  "active",     default: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
 
   create_table "friendships", force: :cascade do |t|
     t.integer  "friendable_id"
@@ -71,12 +79,12 @@ ActiveRecord::Schema.define(version: 20150316230411) do
     t.string   "url"
     t.integer  "user_id"
     t.string   "image"
-    t.string   "category"
     t.boolean  "active",      default: true
     t.boolean  "public",      default: true
     t.boolean  "seen",        default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "category_id"
   end
 
   add_index "yeps", ["user_id"], name: "index_yeps_on_user_id", using: :btree

@@ -5,8 +5,6 @@ gem 'rails', github: 'rails/rails', branch: '4-2-stable'
 
 gem 'rails-api'
 
-gem 'spring', :group => :development
-
 gem 'pg'
 
 gem 'has_friendship', github: 'lucasloliveira/has_friendship', branch: 'master'
