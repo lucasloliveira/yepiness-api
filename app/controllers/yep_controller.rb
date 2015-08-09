@@ -4,10 +4,9 @@ class YepController < ApplicationController
 
   def create
     yep = Yep.new(yep_params)
-    p '>>>HERES THE YEP<<<'
-    p yep
     yep.user = current_user
     friends = params[:newYep][:friends]
+    yep.category_id = params[:newYep][:category][:id]
 
     if !friends.nil?
       friends.each do |friend|
@@ -52,6 +51,6 @@ class YepController < ApplicationController
 
   private
   def yep_params
-    params.require(:newYep).permit(:title, :content, :description, :shortUrl, :url, :image)
+    params.require(:newYep).permit(:title, :category, :content, :description, :shortUrl, :url, :image)
   end
 end
