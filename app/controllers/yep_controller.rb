@@ -39,14 +39,14 @@ class YepController < ApplicationController
     p 'sent'
     p yeps
 
-    render json: yeps.order(created_at: :desc).to_json(:include => [:users])
+    render json: yeps.order(created_at: :desc).to_json(:include => [:users, :category])
   end
 
   def received
     receivedYeps = Yep.joins(:users).where(users: {id: current_user.id})
     p 'received'
     p receivedYeps
-    render json: receivedYeps.order(created_at: :desc).to_json(:include => [:users])
+    render json: receivedYeps.order(created_at: :desc).to_json(:include => [:users, :category])
   end
 
   private
