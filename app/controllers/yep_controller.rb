@@ -4,10 +4,11 @@ class YepController < ApplicationController
 
   def create
     yep = Yep.new(yep_params)
-    p '>>>HERES THE YEP<<<'
-    p yep
     yep.user = current_user
     friends = params[:newYep][:friends]
+    if params[:newYep][:category]
+      yep.category_id = params[:newYep][:category][:id]
+    end
 
     if !friends.nil?
       friends.each do |friend|
@@ -34,24 +35,33 @@ class YepController < ApplicationController
     render json: yep
   end
 
+  def update
+    yep = Yep.find(params[:yep][:id])
+    yep.category_id  = params[:yep][:category][:id]
+
+    yep.save
+
+    render json: yep
+  end
+
 
   def sent
     yeps = Yep.where(user_id: current_user.id)
     p 'sent'
     p yeps
 
-    render json: yeps.order(created_at: :desc).to_json(:include => [:users])
+    render json: yeps.order(created_at: :desc).to_json(:include => [:users, :category])
   end
 
   def received
     receivedYeps = Yep.joins(:users).where(users: {id: current_user.id})
     p 'received'
     p receivedYeps
-    render json: receivedYeps.order(created_at: :desc).to_json(:include => [:users])
+    render json: receivedYeps.order(created_at: :desc).to_json(:include => [:users, :category])
   end
 
   private
   def yep_params
-    params.require(:newYep).permit(:title, :content, :description, :shortUrl, :url, :image)
+    params.require(:newYep).permit(:title, :category, :content, :description, :shortUrl, :url, :image)
   end
 end
