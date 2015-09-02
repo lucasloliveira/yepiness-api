@@ -6,7 +6,9 @@ class YepController < ApplicationController
     yep = Yep.new(yep_params)
     yep.user = current_user
     friends = params[:newYep][:friends]
-    yep.category_id = params[:newYep][:category][:id]
+    if params[:newYep][:category]
+      yep.category_id = params[:newYep][:category][:id]
+    end
 
     if !friends.nil?
       friends.each do |friend|
@@ -30,6 +32,15 @@ class YepController < ApplicationController
     end
 
     yep.save
+    render json: yep
+  end
+
+  def update
+    yep = Yep.find(params[:yep][:id])
+    yep.category_id  = params[:yep][:category][:id]
+
+    yep.save
+
     render json: yep
   end
 
