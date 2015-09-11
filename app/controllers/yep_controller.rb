@@ -57,7 +57,7 @@ class YepController < ApplicationController
     receivedYeps = Yep.joins(:users).where(users: {id: current_user.id})
     p 'received'
     p receivedYeps
-    render json: receivedYeps.order(created_at: :desc).to_json(:include => [:users, :category])
+    render json: receivedYeps.order(created_at: :desc).to_json(:include => [:user, :users, :category])
   end
 
   private
