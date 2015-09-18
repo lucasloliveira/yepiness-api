@@ -35,9 +35,26 @@ class YepController < ApplicationController
     render json: yep
   end
 
-  def update
-    yep = Yep.find(params[:yep][:id])
-    yep.category_id  = params[:yep][:category][:id]
+  def remove
+    yep = Yep.find(params[:yepId])
+    yep.active = false
+
+    yep.save
+    render json: yep
+  end
+
+  def updateCategory
+    yep = Yep.find(params[:yepId])
+    yep.category_id  = params[:categoryId]
+
+    yep.save
+
+    render json: yep
+  end
+
+  def updateRating
+    yep = Yep.find(params[:yepId])
+    yep.rating = params[:rating]
 
     yep.save
 
@@ -46,7 +63,7 @@ class YepController < ApplicationController
 
 
   def sent
-    yeps = Yep.where(user_id: current_user.id)
+    yeps = Yep.where(user_id: current_user.id, active: true)
     p 'sent'
     p yeps
 
@@ -54,7 +71,7 @@ class YepController < ApplicationController
   end
 
   def received
-    receivedYeps = Yep.joins(:users).where(users: {id: current_user.id})
+    receivedYeps = Yep.joins(:users).where(users: {id: current_user.id}, active: true)
     p 'received'
     p receivedYeps
     render json: receivedYeps.order(created_at: :desc).to_json(:include => [:user, :users, :category])
