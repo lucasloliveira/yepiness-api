@@ -25,6 +25,7 @@ Rails.application.routes.draw do
 
         scope '/yep' do
           post '/' => 'yep#create'
+          delete '/:yepId' => 'yep#remove'
           put '/' => 'yep#update'
           put '/:yepId/category/:categoryId' => 'yep#updateCategory'
           put '/:yepId/rating/:rating' => 'yep#updateRating'
