@@ -35,9 +35,18 @@ class YepController < ApplicationController
     render json: yep
   end
 
-  def update
-    yep = Yep.find(params[:yep][:id])
-    yep.category_id  = params[:yep][:category][:id]
+  def updateCategory
+    yep = Yep.find(params[:yepId])
+    yep.category_id  = params[:categoryId]
+
+    yep.save
+
+    render json: yep
+  end
+
+  def updateRating
+    yep = Yep.find(params[:yepId])
+    yep.rating = params[:rating]
 
     yep.save
 

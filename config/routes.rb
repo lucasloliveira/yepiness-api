@@ -26,6 +26,8 @@ Rails.application.routes.draw do
         scope '/yep' do
           post '/' => 'yep#create'
           put '/' => 'yep#update'
+          put '/:yepId/category/:categoryId' => 'yep#updateCategory'
+          put '/:yepId/rating/:rating' => 'yep#updateRating'
           get '/sent' => 'yep#sent'
           get '/received' => 'yep#received'
         end
